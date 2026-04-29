@@ -270,6 +270,7 @@
 
       /* CENTER TEXT OVERLAY */
       .slideshow-content {
+        display: none !important;
         position: relative;
         z-index: 10;
         text-align: center;
@@ -795,13 +796,11 @@
           currentIndex = index;
           document.getElementById("overlay").style.display = "flex";
           document.getElementById("zoomImg").src = img.src;
-          document.body.style.overflow = "hidden";
         });
       });
 
       function closeZoom() {
         document.getElementById("overlay").style.display = "none";
-        document.body.style.overflow = "auto";
       }
 
       function prevImg() {
@@ -823,6 +822,28 @@
         if (e.key === "Escape") closeZoom();
       });
 
+      // === SLIDESHOW DATA - TAMBAH INI ===
+      const slideData = [
+        {
+          title: "Our First Moment",
+          subtitle: "The day we knew this was forever 💕",
+        },
+        {
+          title: "Sweet Memories",
+          subtitle: "Every laugh, every smile with you ✨",
+        },
+        {
+          title: "Together Always",
+          subtitle: "You are my sunshine, my everything ❤️",
+        },
+        {
+          title: "Perfect Moments",
+          subtitle: "Time stops when I'm with you 💖",
+        },
+        { title: "Love in Bloom", subtitle: "Our hearts beat as one 🌸" },
+        { title: "Forever Love", subtitle: "With you, I'm home anywhere 🏠" },
+        { title: "Our Adventure", subtitle: "Every day is magic with you 🌟" },
+      ];
       // === FULL SCREEN SLIDESHOW WITH CENTER TEXT ===
       const slides = document.querySelectorAll("#slideshow img");
       let slideIndex = 0;
