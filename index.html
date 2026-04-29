@@ -2,297 +2,927 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Haikal ❤️ Ame</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haikal ❤️ Ame - Love Story</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      body {
+      * {
         margin: 0;
-        font-family: "Segoe UI", sans-serif;
-        overflow-y: scroll;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
         scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        background: linear-gradient(
+          -45deg,
+          #ff758c,
+          #ff7eb3,
+          #a18cd1,
+          #fbc2eb,
+          #fad0c4
+        );
+        background-size: 600% 600%;
+        animation: gradientMove 15s ease infinite;
+        position: relative;
+        overflow-x: hidden;
       }
 
-      /* SECTION ANIMATION */
-      .section {
-        height: 100vh;
-        scroll-snap-align: start;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        color: white;
-        padding: 20px;
-
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 1s ease;
-      }
-
-      .section.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Background */
-      .section:nth-child(1) {
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      }
-      .section:nth-child(2) {
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      }
-      .section:nth-child(3) {
-        background: linear-gradient(135deg, #a18cd1, #fbc2eb);
-      }
-      .section:nth-child(4) {
-        background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-      }
-
-      /* Gallery */
-      .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 500px;
-      }
-
-      .gallery img {
-        width: 90px;
-        margin: 6px;
-        border-radius: 10px;
-        transition: transform 0.3s;
-        cursor: pointer;
-      }
-
-      .gallery img:hover {
-        transform: scale(1.1);
-      }
-
-      /* Typing */
-      #typing {
-        margin-top: 20px;
-        min-height: 100px;
-      }
-
-      /* Button */
-      button {
-        margin-top: 15px;
-        padding: 10px 20px;
-        border-radius: 20px;
-        border: none;
-        background: white;
-        color: #ff4b5c;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      /* Surat */
-      .letter {
-        display: none;
-        background: white;
-        color: black;
-        padding: 20px;
-        border-radius: 15px;
-        width: 70%;
-        margin-top: 20px;
-      }
-
-      /* Animasi */
-      .heart,
-      .star {
-        position: fixed;
-        animation: floatUp linear infinite;
-      }
-
-      @keyframes floatUp {
-        0% {
-          bottom: -10%;
-          opacity: 1;
-        }
+      @keyframes gradientMove {
+        0%,
         100% {
-          bottom: 100%;
-          opacity: 0;
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
         }
       }
 
-      /* ZOOM OVERLAY */
-      .overlay {
+      /* Floating Hearts */
+      .hearts {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.9);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .heart {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 20px;
+        animation: float 6s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .section {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        opacity: 0;
+        transform: translateY(100px) scale(0.9);
+        transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        padding: 20px;
+      }
+
+      .section.show {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .section.show .title {
+        animation: bounceIn 1.5s ease-out;
+      }
+
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.3);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        70% {
+          transform: scale(0.9);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        text-shadow:
+          0 0 20px rgba(255, 255, 255, 0.8),
+          0 0 40px pink,
+          0 0 60px #ff69b4;
+        margin-bottom: 20px;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow:
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 40px pink,
+            0 0 60px #ff69b4;
+        }
+        to {
+          text-shadow:
+            0 0 30px rgba(255, 255, 255, 1),
+            0 0 50px #ff1493,
+            0 0 80px #ff69b4;
+        }
+      }
+
+      h2 {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        margin-bottom: 30px;
+        font-weight: 600;
+      }
+
+      .counter {
+        font-size: 1.5rem;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px 30px;
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .typing-container {
+        min-height: 100px;
+        font-size: 1.8rem;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+
+      .btn {
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(45deg, #ff6b9d, #ff8fb2);
+        color: white;
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 15px;
+        max-width: 700px;
+        padding: 20px;
+      }
+
+      .gallery img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .gallery img:hover {
+        transform: scale(1.15) rotate(5deg);
+        border-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 20px 50px rgba(255, 107, 157, 0.5);
+      }
+
+      /* SLIDESHOW FULL SCREEN WITH CENTER TEXT */
+      #slideshow {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        overflow: hidden;
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #slideshow img {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0;
+        transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: 1;
+      }
+
+      #slideshow img.active {
+        opacity: 1;
+        transform: scale(1.03);
+      }
+
+      /* CENTER TEXT OVERLAY */
+      .slideshow-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        color: white;
+        text-shadow:
+          0 0 20px rgba(0, 0, 0, 0.8),
+          0 0 40px rgba(0, 0, 0, 0.6);
+        animation: fadeInUp 1s ease-out 0.5s both;
+        max-width: 800px;
+        padding: 0 20px;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .slideshow-title {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(3rem, 8vw, 6rem);
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #fff, #ffebef, #ffebee);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glowText 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glowText {
+        from {
+          text-shadow:
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(255, 107, 157, 0.6);
+        }
+        to {
+          text-shadow:
+            0 0 30px rgba(255, 255, 255, 1),
+            0 0 60px rgba(255, 107, 157, 0.8);
+        }
+      }
+
+      .slideshow-subtitle {
+        font-size: clamp(1.2rem, 4vw, 2rem);
+        font-weight: 300;
+        margin-bottom: 30px;
+        opacity: 0.95;
+      }
+
+      .slideshow-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.25);
+        border: none;
+        color: white;
+        font-size: 2.5rem;
+        padding: 20px 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        z-index: 20;
+      }
+
+      #slideshow-prev {
+        left: 40px;
+      }
+      #slideshow-next {
+        right: 40px;
+      }
+
+      .slideshow-nav:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: translateY(-50%) scale(1.2);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+      }
+
+      .slideshow-counter {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        font-weight: 600;
+        z-index: 20;
+        font-size: 1.1rem;
+      }
+
+      .letter {
+        display: none;
+        background: rgba(255, 255, 255, 0.95);
+        color: #333;
+        padding: 40px;
+        border-radius: 25px;
+        width: 80%;
+        max-width: 600px;
+        margin-top: 30px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
+        transform: scale(0.8);
+        transition: all 0.6s ease;
+        font-family: "Dancing Script", cursive;
+        font-size: 1.4rem;
+        line-height: 1.8;
+      }
+
+      .letter.show {
+        display: block;
+        transform: scale(1);
+      }
+
+      .love-stats {
+        display: flex;
+        gap: 30px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .stat {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 20px 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        animation: slideInUp 1s ease-out;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Overlay */
+      .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
         display: none;
         justify-content: center;
         align-items: center;
-        z-index: 999;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
       }
 
       .overlay img {
         max-width: 90%;
         max-height: 90%;
-        border-radius: 15px;
+        border-radius: 20px;
+        transition: all 0.4s ease;
+      }
+
+      .overlay img:hover {
+        transform: scale(1.05);
+      }
+
+      .nav-btn {
+        position: absolute;
+        top: 50%;
+        font-size: 2.5rem;
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: scale(1.2);
+      }
+
+      /* Particles */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        animation: sparkle 3s infinite;
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+
+        .love-stats {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        #slideshow-prev {
+          left: 20px;
+          font-size: 2rem;
+          padding: 15px 20px;
+        }
+        #slideshow-next {
+          right: 20px;
+          font-size: 2rem;
+          padding: 15px 20px;
+        }
+
+        .slideshow-counter {
+          top: 20px;
+          right: 20px;
+          padding: 8px 15px;
+          font-size: 0.9rem;
+        }
+
+        .slideshow-content {
+          padding: 0 15px;
+        }
+
+        .slideshow-title {
+          font-size: clamp(2.5rem, 10vw, 4rem);
+        }
+      }
+
+      /* Scroll Progress */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b9d, #ff8fb2);
+        z-index: 100;
+        transition: width 0.3s ease;
       }
     </style>
   </head>
-
   <body>
-    <!-- HALAMAN 1 -->
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Floating Hearts -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- HALAMAN 1: Welcome -->
     <div class="section">
-      <h1>Haikal Djalatim ❤️ Ame Milani Pasman</h1>
-      <p id="days"></p>
-      <p>Scroll ke bawah yaa😁</p>
+      <h1 class="title">Haikal Djalatim ❤️ Ame Milani Pasman</h1>
+      <div class="counter" id="days"></div>
+      <div class="love-stats">
+        <div class="stat">
+          <div id="hours">00</div>
+          <div>Hours</div>
+        </div>
+        <div class="stat">
+          <div id="minutes">00</div>
+          <div>Minutes</div>
+        </div>
+        <div class="stat">
+          <div id="seconds">00</div>
+          <div>Seconds</div>
+        </div>
+      </div>
+      <p style="margin-top: 20px; font-size: 1.2rem">
+        Scroll down for magic ✨
+      </p>
     </div>
 
-    <!-- HALAMAN 2 -->
+    <!-- HALAMAN 2: Typing -->
     <div class="section">
-      <div id="typing"></div>
-      <button onclick="startLove()">Start</button>
+      <div class="typing-container" id="typing"></div>
+      <button class="btn" onclick="startLove()">✨ Start Our Story ✨</button>
     </div>
 
-    <!-- HALAMAN 3 -->
+    <!-- HALAMAN 3: Gallery -->
     <div class="section">
-      <h2>Our Photos Together</h2>
-
+      <h2 class="title">📸 Our Precious Moments</h2>
       <div class="gallery">
-        <img src="foto1.jpg" onclick="zoom(this)" />
-        <img src="foto2.jpg" onclick="zoom(this)" />
-        <img src="foto3.jpg" onclick="zoom(this)" />
-        <img src="foto4.jpg" onclick="zoom(this)" />
-        <img src="foto5.jpg" onclick="zoom(this)" />
-        <img src="foto6.jpg" onclick="zoom(this)" />
-        <img src="foto7.jpg" onclick="zoom(this)" />
+        <img src="foto1.jpg" alt="Moment 1" />
+        <img src="foto2.jpg" alt="Moment 2" />
+        <img src="foto3.jpg" alt="Moment 3" />
+        <img src="foto4.jpg" alt="Moment 4" />
+        <img src="foto5.jpg" alt="Moment 5" />
+        <img src="foto6.jpg" alt="Moment 6" />
+        <img src="foto7.jpg" alt="Moment 7" />
       </div>
     </div>
 
-    <!-- HALAMAN 4 -->
+    <!-- HALAMAN 4: FULL SCREEN SLIDESHOW WITH CENTER TEXT -->
     <div class="section">
-      <button onclick="openLetter()">Open the letter 💌</button>
+      <div id="slideshow">
+        <!-- Background Images -->
+        <img src="foto1.jpg" class="active" />
+        <img src="foto2.jpg" />
+        <img src="foto3.jpg" />
+        <img src="foto4.jpg" />
+        <img src="foto5.jpg" />
+        <img src="foto6.jpg" />
+        <img src="foto7.jpg" />
 
+        <!-- CENTER CONTENT -->
+        <div class="slideshow-content">
+          <h1 class="slideshow-title" id="slideTitle">Our First Moment</h1>
+          <p class="slideshow-subtitle" id="slideSubtitle">
+            The day we knew this was forever 💕
+          </p>
+        </div>
+
+        <!-- Controls -->
+        <div class="slideshow-counter" id="slideCounter">1 / 8</div>
+        <button class="slideshow-nav" id="slideshow-prev" onclick="prevSlide()">
+          ❮
+        </button>
+        <button class="slideshow-nav" id="slideshow-next" onclick="nextSlide()">
+          ❯
+        </button>
+      </div>
+    </div>
+
+    <!-- HALAMAN 5: Love Letter -->
+    <div class="section">
+      <h2 class="title">💌 Special Message</h2>
+      <button class="btn" onclick="openLetter()">Open Love Letter 💕</button>
       <div class="letter" id="letter">
-        <h3>for us</h3>
+        <h3 style="color: #ff6b9d; margin-bottom: 20px">To My Forever Love</h3>
         <p>
-          Among the many journeys that have ever existed, ours is the one we
-          wish to cherish the most. We were not always brought together under
-          perfect circumstances, yet it is within those imperfections that we
-          learned to understand one another. Slowly, without even realizing it,
-          the paths that once stood apart have begun to walk side by side,
-          united in the same direction. We may not always be strong, and the
-          days we face are not always easy. There will be moments when weariness
-          arrives uninvited, when silence lingers longer than it should. Yet, in
-          all those moments, we choose to stay—not because everything is
-          perfect, but because we believe that being together is reason enough
-          to endure. In this togetherness, we come to understand that love is
-          not merely something to be spoken, but a choice to be renewed each
-          day. We choose to hold on to one another, even when the world feels
-          distant. We choose to be each other’s strength, even when we ourselves
-          feel fragile. We are two souls walking side by side, completing one
-          another in the simplest of ways. Not always through grand gestures,
-          but through the quiet, often unseen acts of care. In the laughter we
-          share, in the stories we keep, and in the silence that still feels
-          warm—there, our love grows, slowly yet surely. And if one day time
-          puts us to the test, let us remember why we began. For in the end, it
-          is not about how perfect the journey is, but about how we choose not
-          to let go of each other. So as long as time still grants us the
-          chance, let us continue walking together—building hope, nurturing
-          trust, and protecting what we have. For among all the possibilities
-          that exist, we have chosen each other— and it is a choice we will
-          continue to keep, today, tomorrow, and always.
+          "Sometimes I just stop and look at you, wondering how I got so lucky
+          to call you mine. Every smile, every laugh, every moment with you
+          feels like a dream I never want to wake from. Thank you for choosing
+          me every single day, for making the mundane moments feel like magic,
+          and for loving me in a way I never thought possible.
+          <br /><br />
+          With you, I am home, no matter where we are. You are my sunshine, my
+          heartbeat, my everything. Forever yours, Haikal 💖"
         </p>
       </div>
     </div>
 
-    <!-- OVERLAY -->
-    <div class="overlay" id="overlay" onclick="closeZoom()">
-      <img id="zoomImg" />
+    <!-- HALAMAN 6: Forever -->
+    <div class="section">
+      <h1 class="title" style="font-size: clamp(3rem, 10vw, 7rem)">
+        Forever Together
+      </h1>
+      <p style="font-size: 1.5rem; max-width: 600px; line-height: 1.6">
+        "In your eyes, I found my home. In your heart, I found my love. In your
+        soul, I found my mate. With you, I am whole, full, alive."
+      </p>
+      <button class="btn" style="margin-top: 30px" onclick="restartJourney()">
+        🔄 Relive Our Story
+      </button>
     </div>
 
-    <audio id="music" src="lagu.mp3"></audio>
+    <!-- ZOOM OVERLAY -->
+    <div class="overlay" id="overlay">
+      <button class="nav-btn" id="prevBtn" onclick="prevImg()">❮</button>
+      <img id="zoomImg" />
+      <button class="nav-btn" id="nextBtn" onclick="nextImg()">❯</button>
+    </div>
+
+    <!-- MUSIC -->
+    <audio id="music" loop>
+      <source src="lagu.mp3" type="audio/mpeg" />
+    </audio>
 
     <script>
-      // tanggal jadian
+      // === COUNTER & DATE ===
       const startDate = new Date("2026-03-29");
-      const today = new Date();
-      const diffTime = today - startDate;
-      const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      document.getElementById("days").innerText =
-        "We have been together for " + days + " days";
 
-      // typing
-      const text =
-        "This is about us...\nHaikal & Ame\nNot just today,\nbut forever💕";
-      let i = 0;
+      function updateCounter() {
+        const now = new Date();
+        const diff = now - startDate;
 
-      function startLove() {
-        document.getElementById("music").play();
-        typeWriter();
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = `Together for ${days} days`;
+        document.getElementById("hours").innerText = hours
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("minutes").innerText = minutes
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("seconds").innerText = seconds
+          .toString()
+          .padStart(2, "0");
       }
+      updateCounter();
+      setInterval(updateCounter, 1000);
 
-      function typeWriter() {
-        if (i < text.length) {
+      // === FLOATING HEARTS ===
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = ["💖", "💕", "💗", "💝", "✨"][
+          Math.floor(Math.random() * 5)
+        ];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+        heart.style.fontSize = Math.random() * 10 + 15 + "px";
+
+        document.getElementById("hearts").appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 7000);
+      }
+      setInterval(createHeart, 800);
+
+      // === PARTICLES ===
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "vw";
+        particle.style.top = Math.random() * 100 + "vh";
+        particle.style.animationDelay = Math.random() * 2 + "s";
+        particle.style.animationDuration = Math.random() * 2 + 2 + "s";
+
+        document.getElementById("particles").appendChild(particle);
+
+        setTimeout(() => particle.remove(), 5000);
+      }
+      setInterval(createParticle, 300);
+
+      // === TYPING EFFECT ===
+      const texts = [
+        "This is about us...",
+        "Haikal & Ame 💕",
+        "Our love story...",
+        "Written in the stars ✨",
+      ];
+      let textIndex = 0;
+      let charIndex = 0;
+      let typing = false;
+
+      function type() {
+        if (charIndex < texts[textIndex].length) {
           document.getElementById("typing").innerHTML +=
-            text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
-          i++;
-          setTimeout(typeWriter, 50);
+            texts[textIndex][charIndex];
+          charIndex++;
+          setTimeout(type, 80);
+        } else {
+          setTimeout(() => {
+            if (textIndex < texts.length - 1) {
+              textIndex++;
+              charIndex = 0;
+              document.getElementById("typing").innerHTML += "<br><br>";
+              setTimeout(type, 500);
+            }
+          }, 1000);
         }
       }
 
-      // surat
-      function openLetter() {
-        document.getElementById("letter").style.display = "block";
+      function startLove() {
+        document
+          .getElementById("music")
+          .play()
+          .catch((e) => console.log("Autoplay prevented"));
+        if (!typing) {
+          typing = true;
+          type();
+        }
       }
 
-      // zoom foto
-      function zoom(img) {
-        document.getElementById("overlay").style.display = "flex";
-        document.getElementById("zoomImg").src = img.src;
+      // === LETTER ===
+      function openLetter() {
+        const letter = document.getElementById("letter");
+        letter.classList.add("show");
+        letter.scrollIntoView({ behavior: "smooth" });
       }
+
+      // === GALLERY ZOOM ===
+      let currentIndex = 0;
+      const galleryImgs = document.querySelectorAll(".gallery img");
+
+      galleryImgs.forEach((img, index) => {
+        img.addEventListener("click", () => {
+          currentIndex = index;
+          document.getElementById("overlay").style.display = "flex";
+          document.getElementById("zoomImg").src = img.src;
+          document.body.style.overflow = "hidden";
+        });
+      });
 
       function closeZoom() {
         document.getElementById("overlay").style.display = "none";
+        document.body.style.overflow = "auto";
       }
 
-      // animasi scroll
-      const sections = document.querySelectorAll(".section");
+      function prevImg() {
+        currentIndex =
+          (currentIndex - 1 + galleryImgs.length) % galleryImgs.length;
+        document.getElementById("zoomImg").src = galleryImgs[currentIndex].src;
+      }
 
-      function showOnScroll() {
+      function nextImg() {
+        currentIndex = (currentIndex + 1) % galleryImgs.length;
+        document.getElementById("zoomImg").src = galleryImgs[currentIndex].src;
+      }
+
+      // Close overlay
+      document.getElementById("overlay").addEventListener("click", (e) => {
+        if (e.target.id === "overlay") closeZoom();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeZoom();
+      });
+
+      // === FULL SCREEN SLIDESHOW WITH CENTER TEXT ===
+      const slides = document.querySelectorAll("#slideshow img");
+      let slideIndex = 0;
+      let slideshowInterval;
+
+      function updateSlideContent() {
+        document.getElementById("slideTitle").textContent =
+          slideData[slideIndex].title;
+        document.getElementById("slideSubtitle").textContent =
+          slideData[slideIndex].subtitle;
+        document.getElementById("slideCounter").textContent =
+          `${slideIndex + 1} / ${slides.length}`;
+      }
+
+      function showSlide(index) {
+        slides.forEach((img, i) => {
+          img.classList.remove("active");
+          if (i === index) {
+            img.classList.add("active");
+          }
+        });
+        slideIndex = index;
+        updateSlideContent();
+      }
+
+      function nextSlide() {
+        const nextIndex = (slideIndex + 1) % slides.length;
+        showSlide(nextIndex);
+      }
+
+      function prevSlide() {
+        const prevIndex = (slideIndex - 1 + slides.length) % slides.length;
+        showSlide(prevIndex);
+      }
+
+      function startSlideshow() {
+        slideshowInterval = setInterval(nextSlide, 5000); // 5 detik per slide
+      }
+
+      // Keyboard controls untuk slideshow
+      document.addEventListener("keydown", (e) => {
+        const slideshowSection = document
+          .querySelector("#slideshow")
+          .closest(".section");
+        if (
+          slideshowSection.getBoundingClientRect().top < window.innerHeight &&
+          slideshowSection.getBoundingClientRect().bottom > 0
+        ) {
+          if (e.key === "ArrowLeft") prevSlide();
+          if (e.key === "ArrowRight") nextSlide();
+        }
+      });
+
+      // === SCROLL ANIMATIONS ===
+      const sections = document.querySelectorAll(".section");
+      window.addEventListener("scroll", () => {
+        // Progress bar
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        document.getElementById("progressBar").style.width = progress + "%";
+
+        // Section animations
         sections.forEach((sec) => {
-          const top = sec.getBoundingClientRect().top;
-          if (top < window.innerHeight - 100) {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
             sec.classList.add("show");
           }
         });
+      });
+
+      // Pause slideshow on hover
+      const slideshow = document.getElementById("slideshow");
+      slideshow.addEventListener("mouseenter", () =>
+        clearInterval(slideshowInterval),
+      );
+      slideshow.addEventListener("mouseleave", startSlideshow);
+
+      // Pause slideshow saat scroll
+      let scrollTimeout;
+      window.addEventListener("scroll", () => {
+        clearInterval(slideshowInterval);
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(startSlideshow, 2000);
+      });
+
+      // Start everything
+      startSlideshow();
+      updateCounter();
+      updateSlideContent();
+
+      // Restart journey
+      function restartJourney() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        document.getElementById("typing").innerHTML = "";
+        textIndex = 0;
+        charIndex = 0;
+        typing = false;
+        showSlide(0); // Reset ke slide pertama
       }
-
-      window.addEventListener("scroll", showOnScroll);
-      showOnScroll();
-
-      // animasi
-      function createHeart() {
-        const el = document.createElement("div");
-        el.classList.add("heart");
-        el.innerHTML = "❤️";
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.fontSize = Math.random() * 20 + 10 + "px";
-        el.style.animationDuration = Math.random() * 3 + 3 + "s";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 6000);
-      }
-
-      function createStar() {
-        const el = document.createElement("div");
-        el.classList.add("star");
-        el.innerHTML = "✨";
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.fontSize = Math.random() * 15 + 10 + "px";
-        el.style.animationDuration = Math.random() * 4 + 3 + "s";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 7000);
-      }
-
-      setInterval(createHeart, 400);
-      setInterval(createStar, 600);
     </script>
   </body>
 </html>
